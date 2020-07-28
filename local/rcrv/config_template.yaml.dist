@@ -62,7 +62,26 @@ default_mode: 'off'
 
 ####################
 # Some globals that we're going to define for the configs. These will
-# be swapped in wherever they appear in the config templates.
+# be swapped in wherever they appear in the config templates. In
+# addition to the variables defined in config_globals, the
+# build_cruise_definition.py script will fill in the following variables
+# from the CORIOLIX database:
+#
+#   _SENSOR_ID_ -> sensor_id
+#   _UDP_PORT_ -> transmit_port
+#   _FIELD_PATTERNS_ -> text_regex_format
+#
+#   _DATA_TABLE_ -> A dict passed to CORIOLIXWriters where keys are
+#      coriolix data tables and the values are lists of fields that
+#      are to be written to that table. e.g.:
+#
+#      gnss_gga_bow_archive:
+#      - longitude
+#      - latitude
+#      gnss_vtg_bow_archive:
+#      - cog
+#      - sog
+
 config_globals:
   _UDP_WRITE_PORT_: 6221
   _FILE_BASE_: /var/tmp/log/openrvdas
